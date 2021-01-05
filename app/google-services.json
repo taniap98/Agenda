@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58239312342",
+    "firebase_url": "https://agenda-fe205-default-rtdb.firebaseio.com",
+    "project_id": "agenda-fe205",
+    "storage_bucket": "agenda-fe205.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58239312342:android:b324c1bf28ced13a5f4477",
+        "android_client_info": {
+          "package_name": "ro.ase.agenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58239312342-oc97eb0dlvv9se2snu5oti40kl55o461.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLg-_5AqD4ynYO8dNC8gHOxZcZbcOoGtM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58239312342-oc97eb0dlvv9se2snu5oti40kl55o461.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

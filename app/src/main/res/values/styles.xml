@@ -1,0 +1,48 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundColor">@color/background</item>
+
+    </style>
+
+    <style name="Buttons">
+        <item name="android:background">@drawable/rounded_corners_button</item>
+        <item name="android:layout_margin">20dp</item>
+
+    </style>
+
+    <style name="FormElement">
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:layout_marginTop">7dp</item>
+    </style>
+
+    <style name="btnProfile">
+        <item name="android:background">@drawable/rounded_corners_button</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:layout_width">15dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="ProfileElement">
+        <item name="android:layout_margin">14dp</item>
+        <item name="android:textSize">20dp</item>
+
+    </style>
+    <style name="HomepageElement">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textSize">15dp</item>
+
+    </style>
+
+    <style name="AppTheme.CostumePopUp">
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+
+</resources>
