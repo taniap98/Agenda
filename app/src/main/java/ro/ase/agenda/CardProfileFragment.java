@@ -31,7 +31,6 @@ public class CardProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ShowContact.class);
-                intent.putExtra("id", profile.getId());
                 intent.putExtra("fullName", profile.getName());
                 intent.putExtra("phone", profile.getPhone());
                 intent.putExtra("email", profile.getEmail());

@@ -18,6 +18,9 @@ public interface ProfileDAO {
     @Query("select * from profiles")
     List<Profile> getAll();
 
+    @Query("SELECT * FROM profiles WHERE phone = :phone")
+    Profile findByProfileId(String phone);
+
     @Query("delete from profiles")
     void deleteAll();
 

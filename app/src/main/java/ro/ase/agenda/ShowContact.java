@@ -29,7 +29,7 @@ public class ShowContact extends AppCompatActivity {
         String name = intent.getStringExtra("fullName");
         TextView tv1 = findViewById(R.id.tvNameC);
         tv1.setText(name);
-        String phone = intent.getStringExtra("phone");
+        final String phone = intent.getStringExtra("phone");
         TextView tv2 = findViewById(R.id.tvPhoneC);
         tv2.setText(phone);
         String email = intent.getStringExtra("email");
@@ -39,7 +39,6 @@ public class ShowContact extends AppCompatActivity {
         TextView tv4 = findViewById(R.id.tvBirthdayValueC);
         tv4.setText(birthday);
 
-        final int id = intent.getIntExtra("id", 1);
 
         bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
@@ -61,8 +60,13 @@ public class ShowContact extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                ProfileDB profileDB =  ProfileDB.getInstanta(getApplicationContext());
+
+                Profile p = profileDB.getProfileDao().findByProfileId(phone);
+
                 Intent intent = new Intent(getApplicationContext(), Popup.class);
-                intent.putExtra("id", id);
+               //aici punem id
+                intent.putExtra("id", p.getId());
                 startActivity(intent);
             }
         });
