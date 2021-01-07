@@ -4,14 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CallDetails extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+    private List<AgendaDetails> messages = new ArrayList<>();
+    public static List<Integer> checkedMessages = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +35,43 @@ public class CallDetails extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
 
-//        ProfileDB profileDB =  ProfileDB.getInstanta(getApplicationContext());
+        Intent intent = getIntent();
+        final int id = intent.getIntExtra("id", 1);
+        final ProfileDB profileDB = ProfileDB.getInstanta(getApplicationContext());
+
+        messages = profileDB.getDetailsDao().getDetailsProfile(id);
+
+        final ListView lv = findViewById(R.id.lvDetails);
+        final DetailsAdapter adapter = new DetailsAdapter(getApplicationContext(), R.layout.elemente_lv, messages, getLayoutInflater()) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                AgendaDetails detail = messages.get(position);
+
+                return view;//
+            }
+        };
+        lv.setAdapter(adapter);
+
+        Button btnDelete = findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                for(int id : checkedMessages){
+                    profileDB.getDetailsDao().deleteOne(id);
+
+                }
+                finish();
+                startActivity(getIntent());
+            }
+        });
+
+    }
+
 
 
 //        ExtractProfileJSON extract = new ExtractProfileJSON(){
@@ -60,7 +106,7 @@ public class CallDetails extends AppCompatActivity {
 //                });
 //            }
 //        };
-    }
+  //  }
 
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

@@ -32,4 +32,7 @@
     <string name="type_your_message">Type your message</string>
     <string name="cancel">Cancel</string>
     <string name="send">Send</string>
+    <string name="conversation">Conversation</string>
+    <string name="delete">Delete</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

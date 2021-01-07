@@ -17,6 +17,9 @@ public interface AgendaDetailsDAO {
     @Query("delete from details")
     void deleteAll();
 
+    @Query("delete from details where id=:id")
+    void deleteOne(int id);
+
     @Query("select * from details where idProfile=:idProfile")
     List<AgendaDetails> getDetailsProfile(long idProfile);
 }

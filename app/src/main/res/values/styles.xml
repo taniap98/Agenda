@@ -13,11 +13,17 @@
         <item name="android:background">@drawable/rounded_corners_button</item>
         <item name="android:layout_margin">20dp</item>
 
+
     </style>
 
     <style name="FormElement">
         <item name="android:layout_marginBottom">7dp</item>
         <item name="android:layout_marginTop">7dp</item>
+    </style>
+    <style name="MessageElement">
+        <item name="android:layout_margin">7dp</item>
+        <item name="android:gravity">end</item>
+        <item name="android:textAlignment">gravity</item>
     </style>
 
     <style name="btnProfile">

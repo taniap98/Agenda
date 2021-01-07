@@ -12,10 +12,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/container" />
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
@@ -24,9 +27,18 @@
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimaryDark"
             app:menu="@menu/bottom_navigation"/>
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Buttons"
+            android:text="@string/delete"
+            >
 
+        </Button>
         <ListView
             android:id="@+id/lvDetails"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

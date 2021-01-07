@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:text="@string/popescu_ion"
+            android:text="TextView"
             android:textSize="30dp"
             android:layout_marginBottom="5dp"
             android:textStyle="bold"/>
@@ -68,17 +68,17 @@
                 android:src="@drawable/ic_baseline_message_24"/>
 
             <ImageButton
-                android:id="@+id/btnVideo"
+                android:id="@+id/btnMaps"
                 android:layout_weight="1"
                 style="@style/btnProfile"
-                android:src="@drawable/ic_baseline_videocam_24"/>
+                android:src="@drawable/ic_map"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0754444555"
+            android:text="TextView"
             android:textStyle="bold"
             android:textSize="30dp"
             style="@style/FormElement"/>
@@ -94,7 +94,7 @@
             android:id="@+id/tvEmailValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/popescuion98_gmail_com"
+            android:text="TextView"
             style="@style/ProfileElement"/>
 
         <TextView
@@ -108,7 +108,7 @@
             android:id="@+id/tvBirthdayValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="12.12.1998"
+            android:text="TextView"
             style="@style/ProfileElement"/>
 
     </LinearLayout>

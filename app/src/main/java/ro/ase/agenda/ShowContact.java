@@ -47,11 +47,17 @@ public class ShowContact extends AppCompatActivity {
         menuItem.setChecked(true);
 
 
+
         Button btnDetailsMessage = findViewById(R.id.btnDetailsMsg);
         btnDetailsMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProfileDB profileDB =  ProfileDB.getInstanta(getApplicationContext());
+
+                Profile p = profileDB.getProfileDao().findByProfileId(phone);
+
                 Intent intent = new Intent(getApplicationContext(), CallDetails.class);
+                intent.putExtra("id", p.getId());
                 startActivity(intent);
             }
         });
@@ -65,7 +71,7 @@ public class ShowContact extends AppCompatActivity {
                 Profile p = profileDB.getProfileDao().findByProfileId(phone);
 
                 Intent intent = new Intent(getApplicationContext(), Popup.class);
-               //aici punem id
+
                 intent.putExtra("id", p.getId());
                 startActivity(intent);
             }

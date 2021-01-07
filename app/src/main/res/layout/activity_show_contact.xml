@@ -112,10 +112,10 @@
             style="@style/ProfileElement"/>
         <Button
             android:id="@+id/btnDetailsMsg"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             style="@style/btnProfile"
-            android:text="Details">
+            android:text="@string/conversation">
 
         </Button>
 

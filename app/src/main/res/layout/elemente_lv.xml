@@ -2,40 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_margin="7dp"
+    android:background="@drawable/border_lv"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/firstName"
+    <CheckedTextView
+        android:id="@+id/ctvId"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/MessageElement"
+        android:text="CheckedTextView" />
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/MessageElement"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/lastName"
+        android:id="@+id/tvDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/MessageElement"
         android:text="TextView" />
-
-    <TextView
-        android:id="@+id/phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-    <TextView
-        android:id="@+id/category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
 </LinearLayout>
