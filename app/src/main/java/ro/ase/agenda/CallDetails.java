@@ -69,6 +69,16 @@ public class CallDetails extends AppCompatActivity {
                 startActivity(getIntent());
             }
         });
+        Button btnShow= findViewById(R.id.btnJSON);
+        btnShow.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), ShowMessagesIdeas.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

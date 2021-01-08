@@ -27,15 +27,33 @@
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimaryDark"
             app:menu="@menu/bottom_navigation"/>
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Buttons"
-            android:text="@string/delete"
-            >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        </Button>
+            <Button
+                android:id="@+id/btnDelete"
+                style="@style/Buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btnJSON"
+                style="@style/Buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ideas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </Button>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ListView
             android:id="@+id/lvDetails"
             android:layout_marginTop="100dp"
