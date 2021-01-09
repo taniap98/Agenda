@@ -1,5 +1,7 @@
 package ro.ase.agenda;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -55,45 +57,77 @@ public class ShowContactsRoom extends AppCompatActivity {
 
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, final View view, int position, long id) {
+                AlertDialog dialog = new AlertDialog.Builder(ShowContactsRoom.this)
+                        .setTitle("Doriti sa stergeti sau sa modificati?")
+                        .setMessage("Delete or Edit?")
+                        .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                TextView textView = (TextView) view.findViewById(R.id.oneMess);
+                                String fullName = textView.getText().toString();
 
-                TextView textView = (TextView) view.findViewById(R.id.oneMess);
-                String fullName = textView.getText().toString();
-
-                String[] name = fullName.split(" ");
-
-
-                //stergem din room
-                profileDB.getProfileDao().deleteOne(name[0], name[1]);
-
-                //stergem din firebase
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef =  database.getReference("agenda-fe205-profile").child("agenda-fe205-profile");
+                                String[] name = fullName.split(" ");
 
 
+                                //stergem din room
+                                profileDB.getProfileDao().deleteOne(name[0], name[1]);
 
-
-                Query queryDB = myRef.orderByChild("lastName").equalTo(name[1]);
-
-                queryDB.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot data: dataSnapshot.getChildren()) {
-                            data.getRef().removeValue();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                                //stergem din firebase
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference myRef =  database.getReference("agenda-fe205-profile").child("agenda-fe205-profile");
 
 
 
 
-                finish();
-                startActivity(getIntent());
+                                Query queryDB = myRef.orderByChild("lastName").equalTo(name[1]);
+
+                                queryDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot data: dataSnapshot.getChildren()) {
+                                            data.getRef().removeValue();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        })
+                        .setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                TextView textView = (TextView) view.findViewById(R.id.oneMess);
+                                String fullName = textView.getText().toString();
+
+                                String[] name = fullName.split(" ");
+
+                                ProfileDB profileDB =  ProfileDB.getInstanta(getApplicationContext());
+
+                                Profile p = profileDB.getProfileDao().findByProfileId(name[0], name[1]);
+
+                                Intent intent = new Intent(getApplicationContext(), PopupEdit.class);
+
+                                intent.putExtra("id", p.getId());
+                                intent.putExtra("firstName", name[0]);
+                                intent.putExtra("lastName", name[1]);
+                                startActivity(intent);
+
+                                dialogInterface.cancel();
+
+                            }
+                        })
+                        .create();
+
+                dialog.show();
+
+
                 return false;
             }
         });

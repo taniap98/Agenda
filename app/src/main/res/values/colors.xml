@@ -7,4 +7,6 @@
     <color name="cardColor">#FFA69E</color>
     <color name="stroke">#09090B</color>
     <color name="fragmBtn">#e5dcf5</color>
+    <color name="btnCall">#1b1e21</color>
+    <color name="btnHang">#800000</color>
 </resources>

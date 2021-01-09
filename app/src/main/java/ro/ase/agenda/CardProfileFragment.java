@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,19 @@ public class CardProfileFragment extends Fragment {
             }
         };
         btn.setOnClickListener(listener);
+
+        ImageButton btnCall = view.findViewById(R.id.btnCall);
+        View.OnClickListener listener2 = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), CallActivity.class);
+                intent.putExtra("phone", profile.getPhone());
+                startActivity(intent);
+            }
+        };
+        btnCall.setOnClickListener(listener2);
         return view;
     }
 

@@ -76,6 +76,7 @@ public class ShowContact extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

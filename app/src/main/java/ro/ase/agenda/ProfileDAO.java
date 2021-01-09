@@ -21,6 +21,12 @@ public interface ProfileDAO {
     @Query("SELECT * FROM profiles WHERE phone = :phone")
     Profile findByProfileId(String phone);
 
+    @Query("SELECT * FROM profiles WHERE firstName=:firstName and lastName=:lastName")
+    Profile findByProfileId(String firstName, String lastName);
+
+    @Query("UPDATE profiles SET firstName=:newFN, lastName=:newLN WHERE id=:id")
+    void updateName(int id, String newFN, String newLN);
+
     @Query("delete from profiles")
     void deleteAll();
 

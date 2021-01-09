@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowContactsRoom"></activity>
+        <activity android:name=".CallActivity"></activity>
+        <activity android:name=".PopupEdit" />
+        <activity android:name=".ShowContactsRoom" />
         <activity android:name=".ShowMessagesIdeas" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
