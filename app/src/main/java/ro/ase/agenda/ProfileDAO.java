@@ -24,6 +24,10 @@ public interface ProfileDAO {
     @Query("delete from profiles")
     void deleteAll();
 
+    @Query("delete from profiles where firstName=:firstName and lastName=:lastName")
+    void deleteOne(String firstName, String lastName);
+
+
     @Delete
     void deleteOne(Profile p);
 

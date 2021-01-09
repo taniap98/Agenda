@@ -6,4 +6,5 @@
     <color name="background">#F4F4F6</color>
     <color name="cardColor">#FFA69E</color>
     <color name="stroke">#09090B</color>
+    <color name="fragmBtn">#e5dcf5</color>
 </resources>

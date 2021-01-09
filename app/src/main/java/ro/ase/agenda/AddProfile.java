@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -102,23 +105,43 @@ public class AddProfile extends AppCompatActivity {
                     etBirthday.setError("Insert birthday");
                 } else {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference("agenda-fe205-profile");
-                    myRef.keepSynced(true);
+                    DatabaseReference myRef = database.getReference("agenda-fe205-profile").child("agenda-fe205-profile");
+                    //myRef.keepSynced(true);
 
-                    ValueEventListener listener = new ValueEventListener() {
+                    final Query queryDB = myRef.orderByChild("phone").equalTo(etPhone.getText().toString());
 
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            boolean ok = true;
-                            if(snapshot.exists()){
-                                for(DataSnapshot dn: snapshot.getChildren()) {
-                                    if(dn.child("phone").getValue(String.class).equals(etPhone.getText().toString())) {
-                                        etPhone.setError("Phone number already registered!");
-                                        ok = false;
+                    final boolean[] ok = {true};
+
+
+
+                    Thread thread = new Thread() {
+                        public void run() {
+                            Log.d("ph", "th1");
+                            queryDB.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()) {
+                                        ok[0] = false;
+
                                     }
-                                 }
-                            }
-                            if(ok){
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    };
+
+
+                    Thread thread2 = new Thread(){
+                        public void run() {
+                            Log.d("ph", "th2");
+                            if (ok[0] == false) {
+                                //etPhone.setError("Phone number already registered!");
+                                Toast.makeText(getApplicationContext(), "Phone already registered!", Toast.LENGTH_SHORT).show();
+                            } else {
                                 String firstName = etFirstName.getText().toString();
                                 String lastName = etLastName.getText().toString();
                                 String phone = etPhone.getText().toString();
@@ -134,35 +157,88 @@ public class AddProfile extends AppCompatActivity {
 
                                 //adaugare in baza de date room
 
-                                ProfileDB profileDB =  ProfileDB.getInstanta(getApplicationContext());
+                                ProfileDB profileDB = ProfileDB.getInstanta(getApplicationContext());
 
                                 profileDB.getProfileDao().insert(profile);
-
-
-
-
                                 //deschidere homepage
                                 Intent intentHomepage = new Intent(getApplicationContext(), Homepage.class);
                                 startActivity(intentHomepage);
                             }
-
-
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-
                     };
-                    myRef.child("agenda-fe205-profile").addValueEventListener(listener);
+                    thread.start();
+
+
+                    try {
+                        thread.join();
+                        thread2.start();
+
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+//                    ValueEventListener listener = new ValueEventListener() {
+//
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                            boolean ok = true;
+//                            if(snapshot.exists()){
+//                                for(DataSnapshot dn: snapshot.getChildren()) {
+//                                    if(dn.child("phone").getValue(String.class).equals(etPhone.getText().toString())) {
+//                                        etPhone.setError("Phone number already registered!");
+//                                        ok = false;
+//                                    }
+//                                 }
+//                            }
+//                            if(ok){
+//                                String firstName = etFirstName.getText().toString();
+//                                String lastName = etLastName.getText().toString();
+//                                String phone = etPhone.getText().toString();
+//                                String email = etEmail.getText().toString();
+//                                String birthday = etBirthday.getText().toString();
+//
+//                                Category category = Category.valueOf(spinnerCategory.getSelectedItem().toString().replaceAll(" ", "").toUpperCase());
+//
+//                                Profile profile = new Profile(firstName, lastName, phone, email, category, birthday);
+//
+//                                //adaugare in baza de date Firebase
+//                                writeProfileInFirebase(profile);
+//
+//                                //adaugare in baza de date room
+//
+//                                ProfileDB profileDB =  ProfileDB.getInstanta(getApplicationContext());
+//
+//                                profileDB.getProfileDao().insert(profile);
+//
+//
+//
+//
+//                                //deschidere homepage
+//                                Intent intentHomepage = new Intent(getApplicationContext(), Homepage.class);
+//                                startActivity(intentHomepage);
+//                            }
+//
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//
+//                    };
+//                    myRef.child("agenda-fe205-profile").addValueEventListener(listener);
 
 
 
 
 
                 }
-            }
+
         });
 
         Button btnCancel = findViewById(R.id.btnCancel);

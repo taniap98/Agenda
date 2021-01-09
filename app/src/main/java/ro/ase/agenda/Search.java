@@ -36,22 +36,6 @@ public class Search extends AppCompatActivity {
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
-
-//        SearchView sv = findViewById(R.id.sv);
-//        sv.setOnQueryTextListener(new OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String qry)
-//            {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText)
-//            {
-//
-//                return true;
-//            }
-//        });
         SearchView sv = findViewById(R.id.sv);
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
 
@@ -69,9 +53,6 @@ public class Search extends AppCompatActivity {
                 queryDB.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                      //  LinearLayout ln = findViewById(R.id.fragment_placeholder2);
-                      //  ln.removeAllViewsInLayout();
 
                         List<Fragment> fragmentList =  getSupportFragmentManager().getFragments();
                         FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();

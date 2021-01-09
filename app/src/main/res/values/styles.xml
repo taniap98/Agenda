@@ -12,8 +12,12 @@
     <style name="Buttons">
         <item name="android:background">@drawable/rounded_corners_button</item>
         <item name="android:layout_margin">20dp</item>
-
-
+    </style>
+    <style name="ButtonsFrag">
+        <item name="android:background">@drawable/rounded_corn_btn_frag</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">@color/stroke</item>
     </style>
 
     <style name="FormElement">

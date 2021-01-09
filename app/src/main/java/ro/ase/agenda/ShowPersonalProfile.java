@@ -68,6 +68,17 @@ public class ShowPersonalProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageButton btnShow = findViewById(R.id.btnShow);
+        btnShow.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ShowContactsRoom.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

@@ -34,6 +34,7 @@ public class ShowMessagesIdeas extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
 
+
         final ListView lv = findViewById(R.id.lvIdeas);
 
         ExtractMessagesJSON extractJSON = new ExtractMessagesJSON(){
